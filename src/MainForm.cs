@@ -23,7 +23,7 @@ namespace Maluhia
         {
             InitializeComponent();
 
-            // Pass 'this' as the root control to ApplyHawaiianTheme
+            // Apply the Hawaiian theme to all controls
             ApplyHawaiianTheme(this);
 
             clicker.StatusChanged += msg =>
@@ -35,7 +35,7 @@ namespace Maluhia
             };
             radioFixed.Checked = true;
 
-            // Establece la visibilidad inicial de los controles de intervalo
+            // Set the initial visibility of interval controls
             labelFixed.Visible = numericFixed.Visible = radioFixed.Checked;
             labelMin.Visible = numericMin.Visible = radioRandom.Checked;
             labelMax.Visible = numericMax.Visible = radioRandom.Checked;
@@ -43,7 +43,7 @@ namespace Maluhia
             UpdateIntervalControls();
             UpdateButtonStates();
 
-            // Asocia eventos (si no lo hiciste en el diseñador)
+            // Attach event handlers (if not set in the designer)
             startButton.Click += StartButton_Click;
             stopButton.Click += StopButton_Click;
             selectAreaButton.Click += SelectAreaButton_Click;
@@ -179,10 +179,10 @@ namespace Maluhia
 
         private void IntervalTypeChanged(object sender, EventArgs e)
         {
-            // Mostrar controles de intervalo fijo solo si radioFixed está seleccionado
+            // Show fixed interval controls only if radioFixed is selected
             labelFixed.Visible = numericFixed.Visible = radioFixed.Checked;
 
-            // Mostrar controles de intervalo aleatorio solo si radioRandom está seleccionado
+            // Show random interval controls only if radioRandom is selected
             labelMin.Visible = numericMin.Visible = radioRandom.Checked;
             labelMax.Visible = numericMax.Visible = radioRandom.Checked;
 

@@ -20,6 +20,7 @@ namespace Maluhia
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button selectAreaButton;
         private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Panel statusPanel;
 
         protected override void Dispose(bool disposing)
         {
@@ -48,6 +49,7 @@ namespace Maluhia
             this.stopButton = new System.Windows.Forms.Button();
             this.selectAreaButton = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.statusPanel = new System.Windows.Forms.Panel();
 
             ((System.ComponentModel.ISupportInitialize)(this.numericFixed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericMin)).BeginInit();
@@ -168,16 +170,29 @@ namespace Maluhia
             actionsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             actionsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
 
-            // Row 0: Select area and status
+            // Row 0: Select area and status panel
             this.selectAreaButton.Name = "selectAreaButton";
             this.selectAreaButton.Text = "Select Area";
             this.selectAreaButton.Margin = new System.Windows.Forms.Padding(2, 2, 8, 2);
+
+            // statusPanel with border for statusLabel
+            this.statusPanel.Name = "statusPanel";
+            this.statusPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.statusPanel.Padding = new System.Windows.Forms.Padding(6, 2, 6, 2);
+            this.statusPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.statusPanel.AutoSize = true;
+            this.statusPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Text = "Ready.";
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.statusLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+
+            this.statusPanel.Controls.Add(this.statusLabel);
+
             actionsLayout.Controls.Add(this.selectAreaButton, 0, 0);
-            actionsLayout.Controls.Add(this.statusLabel, 1, 0);
+            actionsLayout.Controls.Add(this.statusPanel, 1, 0);
 
             // Row 1: Start and Stop
             this.startButton.Name = "startButton";

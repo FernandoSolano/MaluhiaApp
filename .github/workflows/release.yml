@@ -29,9 +29,15 @@ jobs:
       - name: List publish output
         run: dir ./src/bin/Release/net9.0-windows/win-x64/publish
 
-      - name: Get version from datetime
-        id: get_version
-        run: echo "RELEASE_VERSION=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+      - name: Set release version
+        id: set_version
+        run: |
+          VERSION="auto-$(date +'%Y%m%d%H%M%S')"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git tag $VERSION
+          git push origin $VERSION
+          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Upload release asset
         uses: softprops/action-gh-release@v2

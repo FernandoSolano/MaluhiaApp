@@ -31,13 +31,10 @@ jobs:
 
       - name: Set release version
         id: set_version
+        shell: pwsh
         run: |
-          VERSION="auto-$(date +'%Y%m%d%H%M%S')"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git tag $VERSION
-          git push origin $VERSION
-          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
+          $version = "auto-$(Get-Date -Format 'yyyyMMddHHmmss')"
+          echo "RELEASE_VERSION=$version" >> $env:GITHUB_ENV
 
       - name: Upload release asset
         uses: softprops/action-gh-release@v2

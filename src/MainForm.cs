@@ -49,6 +49,10 @@ namespace Maluhia
             selectAreaButton.Click += SelectAreaButton_Click;
             radioFixed.CheckedChanged += IntervalTypeChanged;
             radioRandom.CheckedChanged += IntervalTypeChanged;
+
+            // Prevent window resizing
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
         }
 
         /// <summary>
@@ -187,6 +191,12 @@ namespace Maluhia
             labelMax.Visible = numericMax.Visible = radioRandom.Checked;
 
             UpdateIntervalControls();
+
+            // Automatically resize the form when switching interval type
+            this.SuspendLayout();
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.ResumeLayout();
         }
 
         private void UpdateIntervalControls()
